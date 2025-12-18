@@ -1,0 +1,58 @@
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<main>
+    <section id="stats">
+        <h2>Circle Trends (Favorites)</h2>
+        <canvas id="favoritesChart"></canvas>
+    </section>
+
+    <section id="now-reading">
+        <h2>Now Reading</h2>
+        <div class="book-card">
+            <h3>『銀河鉄道の夜』</h3>
+            <button onclick="openPreview('ISBN:9784101092058')">本を試し読みする</button>
+        </div>
+    </section>
+
+    <section id="board">
+        <h2>Salon Board</h2>
+        <div class="giscus">
+            <p>※GitHub Discussionsと連携してここに掲示板が表示されます。</p>
+        </div>
+    </section>
+</main>
+
+<div id="previewModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closePreview()">&times;</span>
+        <div id="viewerCanvas" style="width: 100%; height: 500px"></div>
+    </div>
+</div>
+
+<script>
+    // グラフの描画
+    const ctx = document.getElementById('favoritesChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['銀河鉄道の夜', 'こころ', '星の王子さま', '人間失格'],
+            datasets: [{
+                label: 'Favorites count',
+                data: [12, 19, 8, 15],
+                backgroundColor: 'rgba(139, 90, 43, 0.6)'
+            }]
+        }
+    });
+
+    // プレビュー表示（Google Books API）
+    function openPreview(bookId) {
+        document.getElementById('previewModal').style.display = "block";
+        // 簡易的にiframeで表示する例（実際はGoogle Books Viewer APIを使用可能）
+        const viewer = document.getElementById('viewerCanvas');
+        viewer.innerHTML = `<iframe src="https://books.google.co.jp/books?id=Qv6pDwAAQBAJ&lpg=PP1&hl=ja&pg=PP1&output=embed" width="100%" height="500"></iframe>`;
+    }
+
+    function closePreview() {
+        document.getElementById('previewModal').style.display = "none";
+    }
+</script>

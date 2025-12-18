@@ -1,0 +1,27 @@
+/* グラフのサイズ調整 */
+#favoritesChart {
+    max-width: 100%;
+    margin-bottom: 40px;
+}
+
+/* モーダルのスタイル */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.7);
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 800px;
+    border-radius: 10px;
+}
+.close {
+    float: right;
+    font-size: 28px;
+    cursor: pointer;
+}
