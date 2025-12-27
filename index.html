@@ -1,58 +1,133 @@
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!DOCTYPE html>
+<html lang="ja">
 
-<main>
-    <section id="stats">
-        <h2>Circle Trends (Favorites)</h2>
-        <canvas id="favoritesChart"></canvas>
-    </section>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025年 年間ランキング (Template)</title>
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="description" content="2025年 年間ランキング">
+</head>
 
-    <section id="now-reading">
-        <h2>Now Reading</h2>
-        <div class="book-card">
-            <h3>『銀河鉄道の夜』</h3>
-            <button onclick="openPreview('ISBN:9784101092058')">本を試し読みする</button>
+<body>
+    <header class="site-header">
+        <div class="inner">
+            <div class="logo-placeholder">BOOKS WALKER </div>
         </div>
-    </section>
+    </header>
 
-    <section id="board">
-        <h2>Salon Board</h2>
-        <div class="giscus">
-            <p>※GitHub Discussionsと連携してここに掲示板が表示されます。</p>
+    <main>
+        <div class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="year">2025</span>
+                    <span class="text">年間<br>電子書籍ランキング</span>
+                </h1>
+                <div class="stars-decoration"></div>
+            </div>
+            <div class="category-tabs">
+                <ul>
+                    <li class="active">総合</li>
+                    <li>医療</li>
+                    <li>技術</li>
+                    <li>政治</li>
+                    <li>音楽</li>
+                    <li>電力</li>
+                    <li>宗教</li>
+                </ul>
+            </div>
         </div>
-    </section>
-</main>
 
-<div id="previewModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closePreview()">&times;</span>
-        <div id="viewerCanvas" style="width: 100%; height: 500px"></div>
-    </div>
-</div>
+        <div class="ranking-container">
+            <!-- Rank 1 -->
+            <section class="ranking-item rank-1">
+                <div class="rank-badge-large">
+                    <span class="rank-num">1</span>
+                    <span class="rank-label">位</span>
+                </div>
+                <div class="item-card-featured">
+                    <div class="item-flex-wrapper">
+                        <div class="item-thumbnail">
+                            <div class="placeholder-img" style="aspect-ratio: 1/1.43;">NO IMAGE</div>
+                        </div>
+                        <div class="item-details">
+                            <div class="author-comment">
+                                <div class="comment-bubble">
+                                    <span class="icon-speech">💬</span>
+                                    <span class="comment-text">著者コメント：ここにコメントが入ります。</span>
+                                </div>
+                            </div>
+                            <h2 class="item-title">ランキング1位のタイトル</h2>
+                            <p class="item-author">著者：著者名</p>
+                            <p class="item-publisher">出版社：出版社名</p>
+                            <div class="item-meta">
+                                <span class="price">1,000円(税込)</span>
+                            </div>
+                            <div class="item-buttons">
+                                <button class="btn-preview">試し読み</button>
+                                <button class="btn-cart">カート</button>
+                            </div>
+                            <p class="item-description">ここに作品のあらすじが入ります。テキストはダミーです。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-<script>
-    // グラフの描画
-    const ctx = document.getElementById('favoritesChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['銀河鉄道の夜', 'こころ', '星の王子さま', '人間失格'],
-            datasets: [{
-                label: 'Favorites count',
-                data: [12, 19, 8, 15],
-                backgroundColor: 'rgba(139, 90, 43, 0.6)'
-            }]
-        }
-    });
+            <!-- Rank 2 -->
+            <section class="ranking-item">
+                <div class="rank-badge">
+                    <span class="rank-num">2</span>位
+                </div>
+                <div class="item-card">
+                    <div class="item-flex-wrapper">
+                        <div class="item-thumbnail">
+                            <div class="placeholder-img" style="aspect-ratio: 1/1.43;">NO IMAGE</div>
+                        </div>
+                        <div class="item-details">
+                            <h3 class="item-title">ランキング2位のタイトル</h3>
+                            <p class="item-author">著者：著者名</p>
+                            <div class="item-meta">
+                                <span class="price">800円(税込)</span>
+                            </div>
+                            <div class="item-buttons">
+                                <button class="btn-preview">試し読み</button>
+                                <button class="btn-cart">カート</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-    // プレビュー表示（Google Books API）
-    function openPreview(bookId) {
-        document.getElementById('previewModal').style.display = "block";
-        // 簡易的にiframeで表示する例（実際はGoogle Books Viewer APIを使用可能）
-        const viewer = document.getElementById('viewerCanvas');
-        viewer.innerHTML = `<iframe src="https://books.google.co.jp/books?id=Qv6pDwAAQBAJ&lpg=PP1&hl=ja&pg=PP1&output=embed" width="100%" height="500"></iframe>`;
-    }
+            <!-- Rank 3 -->
+            <section class="ranking-item">
+                <div class="rank-badge">
+                    <span class="rank-num">3</span>位
+                </div>
+                <div class="item-card">
+                    <div class="item-flex-wrapper">
+                        <div class="item-thumbnail">
+                            <div class="placeholder-img" style="aspect-ratio: 1/1.43;">NO IMAGE</div>
+                        </div>
+                        <div class="item-details">
+                            <h3 class="item-title">ランキング3位のタイトル</h3>
+                            <p class="item-author">著者：著者名</p>
+                            <div class="item-meta">
+                                <span class="price">750円(税込)</span>
+                            </div>
+                            <div class="item-buttons">
+                                <button class="btn-preview">試し読み</button>
+                                <button class="btn-cart">カート</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
 
-    function closePreview() {
-        document.getElementById('previewModal').style.display = "none";
-    }
-</script>
+    <footer class="site-footer">
+        <p>&copy; 2025 Template Footer</p>
+    </footer>
+</body>
+
+</html>
