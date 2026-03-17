@@ -1,133 +1,164 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2025年 年間ランキング (Template)</title>
-    <link rel="stylesheet" href="css/style.css">
-    <meta name="description" content="2025年 年間ランキング">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LINE DAO Wallet</title>
+
+<script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/ethers@6.8.0/dist/ethers.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@web3auth/no-modal@5.2.0/dist/noModal.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@web3auth/openlogin-adapter@5.2.0/dist/openloginAdapter.umd.min.js"></script>
+
+<style>
+body{font-family:sans-serif;background:#f5f5f5;margin:0}
+.header{background:#fff;padding:20px;text-align:center}
+.addr{font-size:11px;color:#888}
+.container{padding:20px;display:flex;flex-direction:column;gap:15px}
+.btn{background:#fff;border:none;border-radius:15px;padding:20px;font-size:16px;box-shadow:0 3px 10px rgba(0,0,0,0.07)}
+</style>
 </head>
 
 <body>
-    <header class="site-header">
-        <div class="inner">
-            <div class="logo-placeholder">BOOKS WALKER </div>
-        </div>
-    </header>
 
-    <main>
-        <div class="hero-section">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    <span class="year">2025</span>
-                    <span class="text">年間<br>電子書籍ランキング</span>
-                </h1>
-                <div class="stars-decoration"></div>
-            </div>
-            <div class="category-tabs">
-                <ul>
-                    <li class="active">総合</li>
-                    <li>医療</li>
-                    <li>技術</li>
-                    <li>政治</li>
-                    <li>音楽</li>
-                    <li>電力</li>
-                    <li>宗教</li>
-                </ul>
-            </div>
-        </div>
+<div class="header">
+<b id="name">loading...</b>
+<div class="addr" id="addr">wallet...</div>
+</div>
 
-        <div class="ranking-container">
-            <!-- Rank 1 -->
-            <section class="ranking-item rank-1">
-                <div class="rank-badge-large">
-                    <span class="rank-num">1</span>
-                    <span class="rank-label">位</span>
-                </div>
-                <div class="item-card-featured">
-                    <div class="item-flex-wrapper">
-                        <div class="item-thumbnail">
-                            <div class="placeholder-img" style="aspect-ratio: 1/1.43;">NO IMAGE</div>
-                        </div>
-                        <div class="item-details">
-                            <div class="author-comment">
-                                <div class="comment-bubble">
-                                    <span class="icon-speech">💬</span>
-                                    <span class="comment-text">著者コメント：ここにコメントが入ります。</span>
-                                </div>
-                            </div>
-                            <h2 class="item-title">ランキング1位のタイトル</h2>
-                            <p class="item-author">著者：著者名</p>
-                            <p class="item-publisher">出版社：出版社名</p>
-                            <div class="item-meta">
-                                <span class="price">1,000円(税込)</span>
-                            </div>
-                            <div class="item-buttons">
-                                <button class="btn-preview">試し読み</button>
-                                <button class="btn-cart">カート</button>
-                            </div>
-                            <p class="item-description">ここに作品のあらすじが入ります。テキストはダミーです。</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+<div class="container">
 
-            <!-- Rank 2 -->
-            <section class="ranking-item">
-                <div class="rank-badge">
-                    <span class="rank-num">2</span>位
-                </div>
-                <div class="item-card">
-                    <div class="item-flex-wrapper">
-                        <div class="item-thumbnail">
-                            <div class="placeholder-img" style="aspect-ratio: 1/1.43;">NO IMAGE</div>
-                        </div>
-                        <div class="item-details">
-                            <h3 class="item-title">ランキング2位のタイトル</h3>
-                            <p class="item-author">著者：著者名</p>
-                            <div class="item-meta">
-                                <span class="price">800円(税込)</span>
-                            </div>
-                            <div class="item-buttons">
-                                <button class="btn-preview">試し読み</button>
-                                <button class="btn-cart">カート</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+<button class="btn" onclick="getBalance()">残高確認</button>
 
-            <!-- Rank 3 -->
-            <section class="ranking-item">
-                <div class="rank-badge">
-                    <span class="rank-num">3</span>位
-                </div>
-                <div class="item-card">
-                    <div class="item-flex-wrapper">
-                        <div class="item-thumbnail">
-                            <div class="placeholder-img" style="aspect-ratio: 1/1.43;">NO IMAGE</div>
-                        </div>
-                        <div class="item-details">
-                            <h3 class="item-title">ランキング3位のタイトル</h3>
-                            <p class="item-author">著者：著者名</p>
-                            <div class="item-meta">
-                                <span class="price">750円(税込)</span>
-                            </div>
-                            <div class="item-buttons">
-                                <button class="btn-preview">試し読み</button>
-                                <button class="btn-cart">カート</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </main>
+<button class="btn" onclick="vote()">DAO投票署名</button>
 
-    <footer class="site-footer">
-        <p>&copy; 2025 Template Footer</p>
-    </footer>
+<button class="btn" onclick="sendTip()">チップ送信</button>
+
+</div>
+
+<script>
+
+const LIFF_ID="YOUR_LIFF_ID"
+const WEB3AUTH_CLIENT_ID="YOUR_WEB3AUTH_CLIENT_ID"
+const VERIFIER="YOUR_WEB3AUTH_VERIFIER"
+const LINE_CHANNEL_ID="YOUR_LINE_CHANNEL_ID"
+
+let web3auth
+let provider
+let signer
+let address
+
+const BASE_RPC="https://mainnet.base.org"
+
+async function start(){
+
+await liff.init({liffId:LIFF_ID})
+
+if(!liff.isLoggedIn()){
+liff.login()
+return
+}
+
+if(!liff.isInClient()){
+alert("LINE内ブラウザで開いてください")
+return
+}
+
+const idToken=liff.getIDToken()
+
+if(!idToken){
+alert("LINE認証エラー")
+return
+}
+
+const decoded=JSON.parse(atob(idToken.split('.')[1]))
+
+web3auth=new window.NoModal.Web3AuthNoModal({
+clientId:WEB3AUTH_CLIENT_ID,
+chainConfig:{
+chainNamespace:"eip155",
+chainId:"0x2105",
+rpcTarget:BASE_RPC,
+displayName:"Base"
+}
+})
+
+const adapter=new window.OpenloginAdapter.OpenloginAdapter({
+adapterSettings:{
+loginConfig:{
+jwt:{
+verifier:VERIFIER,
+typeOfLogin:"jwt",
+clientId:LINE_CHANNEL_ID
+}
+}
+}
+})
+
+web3auth.configureAdapter(adapter)
+
+await web3auth.init()
+
+provider=await web3auth.connectTo("openlogin",{
+loginProvider:"jwt",
+extraLoginOptions:{
+id_token:idToken,
+verifierId:decoded.sub
+}
+})
+
+const ethersProvider=new ethers.BrowserProvider(provider)
+
+signer=await ethersProvider.getSigner()
+
+address=await signer.getAddress()
+
+const profile=await liff.getProfile()
+
+document.getElementById("name").innerText=profile.displayName
+
+const short=address.slice(0,6)+"..."+address.slice(-4)
+
+document.getElementById("addr").innerText=short
+
+}
+
+async function getBalance(){
+
+const ethersProvider=new ethers.BrowserProvider(provider)
+
+const bal=await ethersProvider.getBalance(address)
+
+const eth=ethers.formatEther(bal)
+
+alert("ETH残高\n"+eth)
+
+}
+
+async function vote(){
+
+const message="DAO Proposal #12 賛成"
+
+const sig=await signer.signMessage(message)
+
+alert("署名完了\n"+sig.slice(0,20)+"...")
+
+}
+
+async function sendTip(){
+
+const tx=await signer.sendTransaction({
+to:"0x1111111111111111111111111111111111111111",
+value:ethers.parseEther("0.0001")
+})
+
+alert("送信TX\n"+tx.hash)
+
+}
+
+document.addEventListener("DOMContentLoaded",start)
+
+</script>
+
 </body>
-
 </html>
